@@ -69,9 +69,44 @@ print(result)
 ```
 
 
+인풋이 두 줄로 되어 있기 때문에 n,m을 첫째 줄에서 입력을 받고, cards로 둘째 줄에 입력을 받는다.
+
+result와 length를 초기화하고
+
+3중 반복문으로 cards의 합을 sum_value에 저장한다. 반복문의 범위가 저렇게 되는 이유는 반복 추출이 없게 뽑히기 때문이다.
+
+문제에서 M보다 세 개의 카드의 합이 작아야하는 조건이 있기 때문에 if문을 사용하고, result에 이들의 최대값을 저장하고 출력한다.
+
+### 다른풀이
+
+```python
+
+N, M = map(int,(input().split()))
+
+d = list(map(int, input().split())) # 카드 리스트
+
+result = 0
+Max = 0
+
+for i in range(N-2): # 3중 for문을 돌면서 겹치지 않게 범위를 지정
+    for j in range(i+1,N-1):
+        for k in range(j+1,N):
+            if d[i]+d[j]+d[k] > M: # 3개의 값 더한것이 M보다 크다면 넘어감
+                continue
+            else:
+                result = d[i]+d[j]+d[k]
+                if Max <= result: # M과 가장 유사한 값은 가장 큰값이기 때문에 비교해서 큰값을 저장
+                    Max = result
+
+print(Max)
+
+```
 
 
 
+3장을 뽑아야 하기 때문에 3중for문을 돌고 겹치지않게 뽑기위해 처음 for문은 N-2전까지 
+
+다음 for문은 i값보다 1크면서 N-1전까지 돌고 마지막 for문은 j보다 1크면서 N전까지 돌게 범위를 잡는다.
 
 
 
